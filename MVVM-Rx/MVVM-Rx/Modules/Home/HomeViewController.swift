@@ -17,19 +17,33 @@ class HomeViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont(name: "MarkerFelt-Thin", size: 30)
-        titleLabel.text = "Login App"
+        titleLabel.textColor = UIColor.systemGray4
+        titleLabel.text = "Sign In"
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
+    }()
+    
+    private lazy var imageBackground: UIImageView = {
+        let imageBackground = UIImageView()
+        imageBackground.image = UIImage(named: "background")
+        return imageBackground
+    }()
+    
+    private lazy var imageLogin: UIImageView = {
+        let imageLogin = UIImageView()
+        imageLogin.image = UIImage(named: "loginIcon")
+        return imageLogin
     }()
     
     private lazy var usernameTextfield: UITextField = {
         let usernameTextfield = UITextField()
         usernameTextfield.becomeFirstResponder()
         usernameTextfield.attributedPlaceholder = NSAttributedString(string: "Your username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        usernameTextfield.backgroundColor = UIColor.systemGray4
         usernameTextfield.textAlignment = .center
         usernameTextfield.layer.borderWidth = 1
         usernameTextfield.layer.cornerRadius = 10
-        usernameTextfield.layer.borderColor = UIColor.black.cgColor
+        usernameTextfield.layer.borderColor = UIColor.systemTeal.cgColor
         usernameTextfield.translatesAutoresizingMaskIntoConstraints = false
         return usernameTextfield
     }()
@@ -38,9 +52,10 @@ class HomeViewController: UIViewController {
        let passwordTextfield = UITextField()
         passwordTextfield.attributedPlaceholder = NSAttributedString(string: "Your password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         passwordTextfield.textAlignment = .center
+        passwordTextfield.backgroundColor = UIColor.systemGray4
         passwordTextfield.layer.borderWidth = 1
         passwordTextfield.layer.cornerRadius = 10
-        passwordTextfield.layer.borderColor = UIColor.black.cgColor
+        passwordTextfield.layer.borderColor = UIColor.systemTeal.cgColor
         passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
         return passwordTextfield
     }()
@@ -87,8 +102,9 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     func setupUI() {
-        view.backgroundColor = .systemTeal
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(imageLogin)
         stackView.addArrangedSubview(usernameTextfield)
         stackView.addArrangedSubview(passwordTextfield)
         stackView.addArrangedSubview(loginButton)
