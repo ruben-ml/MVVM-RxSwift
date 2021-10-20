@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class HomeViewController: UIViewController {
 
     private var viewModel: HomeViewModel
+    private var disposeBag = DisposeBag()
     
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
+        titleLabel.font = UIFont(name: "MarkerFelt-Thin", size: 30)
         titleLabel.text = "Login App"
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
@@ -36,6 +39,7 @@ class HomeViewController: UIViewController {
         passwordTextfield.attributedPlaceholder = NSAttributedString(string: "Your password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         passwordTextfield.textAlignment = .center
         passwordTextfield.layer.borderWidth = 1
+        passwordTextfield.layer.cornerRadius = 10
         passwordTextfield.layer.borderColor = UIColor.black.cgColor
         passwordTextfield.translatesAutoresizingMaskIntoConstraints = false
         return passwordTextfield
@@ -43,7 +47,8 @@ class HomeViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let loginButton = UIButton()
-        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitle("Acceder", for: .normal)
+        loginButton.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 20)
         loginButton.layer.backgroundColor = UIColor.orange.cgColor
         loginButton.layer.borderWidth = 1
         loginButton.layer.cornerRadius = 10
@@ -76,8 +81,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        bindViewModel()
     }
-    
+}
+
+extension HomeViewController {
     func setupUI() {
         view.backgroundColor = .systemTeal
         stackView.addArrangedSubview(titleLabel)
@@ -103,6 +111,21 @@ class HomeViewController: UIViewController {
             passwordTextfield.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             passwordTextfield.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    func bindViewModel() {
+        usernameTextfield
+            .rx.text.map { $0 ?? "" }
+            .bind(to: viewModel.input.username)
+            .disposed(by: disposeBag)
+        passwordTextfield
+            .rx.text.map { $0 ?? "" }
+            .bind(to: viewModel.input.password)
+            .disposed(by: disposeBag)
+        viewModel
+            .output.login
+            .drive(loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 
 }
