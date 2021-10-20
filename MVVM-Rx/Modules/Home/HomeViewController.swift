@@ -132,7 +132,7 @@ extension HomeViewController {
     func bindViewModel() {
         usernameTextfield
             .rx.text.map { $0 ?? "" }
-            .debug("usernamejjj")
+            .debug("username")
             .bind(to: viewModel.input.username)
             .disposed(by: disposeBag)
         passwordTextfield
