@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		BBA04248272025DA00D6A591 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA04246272025DA00D6A591 /* LaunchScreen.storyboard */; };
 		BBA04253272025DA00D6A591 /* MVVM_RxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA04252272025DA00D6A591 /* MVVM_RxTests.swift */; };
 		BBA0425E272025DA00D6A591 /* MVVM_RxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0425D272025DA00D6A591 /* MVVM_RxUITests.swift */; };
+		BBA0426F27202FFA00D6A591 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA0426E27202FFA00D6A591 /* HomeViewModel.swift */; };
+		BBA042712720300800D6A591 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA042702720300800D6A591 /* HomeViewController.swift */; };
 		F9BE0D2C64E47552DC1B7DE3 /* Pods_MVVM_Rx_MVVM_RxUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9B4350F22DBC73AC3FDE0A /* Pods_MVVM_Rx_MVVM_RxUITests.framework */; };
 		FEAF5B2286DE334FC7E957D4 /* Pods_MVVM_Rx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D566199887F0243962A61FED /* Pods_MVVM_Rx.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,8 @@
 		BBA04259272025DA00D6A591 /* MVVM-RxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MVVM-RxUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA0425D272025DA00D6A591 /* MVVM_RxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVM_RxUITests.swift; sourceTree = "<group>"; };
 		BBA0425F272025DA00D6A591 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBA0426E27202FFA00D6A591 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		BBA042702720300800D6A591 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD39EB31EB5F77C7731E1D58 /* Pods-MVVM-Rx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVM-Rx.debug.xcconfig"; path = "Target Support Files/Pods-MVVM-Rx/Pods-MVVM-Rx.debug.xcconfig"; sourceTree = "<group>"; };
 		D566199887F0243962A61FED /* Pods_MVVM_Rx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVM_Rx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -101,7 +105,6 @@
 				A4FC5499A509CC9291E6AB11 /* Pods-MVVM-RxTests.debug.xcconfig */,
 				8E3C77E77710A64EEF156B6D /* Pods-MVVM-RxTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -130,6 +133,8 @@
 		BBA0423A272025D800D6A591 /* MVVM-Rx */ = {
 			isa = PBXGroup;
 			children = (
+				BBA0426C27202FDC00D6A591 /* Modules */,
+				BBA0426B27202FD400D6A591 /* MVVM */,
 				BBA0423B272025D800D6A591 /* AppDelegate.swift */,
 				BBA0423D272025D800D6A591 /* SceneDelegate.swift */,
 				BBA0423F272025D800D6A591 /* ViewController.swift */,
@@ -157,6 +162,30 @@
 				BBA0425F272025DA00D6A591 /* Info.plist */,
 			);
 			path = "MVVM-RxUITests";
+			sourceTree = "<group>";
+		};
+		BBA0426B27202FD400D6A591 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		BBA0426C27202FDC00D6A591 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				BBA0426D27202FEA00D6A591 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		BBA0426D27202FEA00D6A591 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BBA0426E27202FFA00D6A591 /* HomeViewModel.swift */,
+				BBA042702720300800D6A591 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		F754E907DB80966B88505AB1 /* Frameworks */ = {
@@ -407,9 +436,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBA042712720300800D6A591 /* HomeViewController.swift in Sources */,
 				BBA04240272025D800D6A591 /* ViewController.swift in Sources */,
 				BBA0423C272025D800D6A591 /* AppDelegate.swift in Sources */,
 				BBA0423E272025D800D6A591 /* SceneDelegate.swift in Sources */,
+				BBA0426F27202FFA00D6A591 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
