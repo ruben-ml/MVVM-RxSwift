@@ -17,17 +17,33 @@ class MVVMTests: XCTestCase {
     var viewModel: HomeViewModel!
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        self.scheduler = TestScheduler(initialClock: 0)
+        self.disposeBag = DisposeBag()
+        self.viewModel = HomeViewModel()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+       
+        let login = scheduler.createObserver(Bool.self)
+
+        viewModel.output.login
+            .drive(login)
+            .disposed(by: disposeBag)
+            
+        scheduler.createColdObservable([.next(10, ("changed"))])
+            .bind(to: viewModel.input.username)
+            .disposed(by: disposeBag)
+        scheduler.createColdObservable([.next(10, ("changed"))])
+            .bind(to: viewModel.input.password)
+            .disposed(by: disposeBag)
+        scheduler.start()
+        XCTAssert(true)
     }
 
     func testPerformanceExample() throws {
