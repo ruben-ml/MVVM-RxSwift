@@ -1,18 +1,22 @@
 //
-//  MVVM_RxTests.swift
-//  MVVM-RxTests
+//  MVVMTests.swift
+//  MVVMTests
 //
-//  Created by Rubén Muñoz López on 20/10/21.
+//  Created by Rubén Muñoz López on 27/10/21.
 //
 
 import XCTest
 import RxSwift
 import RxTest
+import RxBlocking
 
-@testable import MVVM_Rx
+@testable import MVVMRx
 
-class MVVM_RxTests: XCTestCase {
-    
+class MVVMTests: XCTestCase {
+
+    var viewModel: HomeViewModel!
+    var scheduler: TestScheduler!
+    var disposeBag: DisposeBag!
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -28,13 +32,9 @@ class MVVM_RxTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
-    }
-    func testOfRxSwift() {
-        let scheduler = TestScheduler(initialClock: 0)
-        let bag = DisposeBag()
     }
 
 }
