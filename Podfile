@@ -12,6 +12,8 @@ target 'MVVM-Rx' do
   target 'MVVM-RxTests' do
     inherit! :search_paths
     # Pods for testing
+	pod 'RxTest', '~> 6.2.0'
+	pod 'RxBlocking', '~> 6.2.0'
   end
 
   target 'MVVM-RxUITests' do
