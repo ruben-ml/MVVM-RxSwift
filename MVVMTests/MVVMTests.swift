@@ -28,7 +28,7 @@ class MVVMTests: XCTestCase {
         viewModel = nil
     }
 
-    func testExample() throws {
+    func testValidateTextfields() throws {
        
         let login = scheduler.createObserver(Bool.self)
 
@@ -43,9 +43,27 @@ class MVVMTests: XCTestCase {
             .bind(to: viewModel.input.password)
             .disposed(by: disposeBag)
         scheduler.start()
-        XCTAssert(true)
+        XCTAssertTrue(true, "cumple la condicion")
     }
 
+    func testValidateErrorTextfields() throws {
+       
+        let login = scheduler.createObserver(Bool.self)
+
+        viewModel.output.login
+            .drive(login)
+            .disposed(by: disposeBag)
+            
+        scheduler.createColdObservable([.next(10, ("ch"))])
+            .bind(to: viewModel.input.username)
+            .disposed(by: disposeBag)
+        scheduler.createColdObservable([.next(10, ("ch"))])
+            .bind(to: viewModel.input.password)
+            .disposed(by: disposeBag)
+        scheduler.start()
+        XCTAssertFalse(true, "no cumple la condicion superior a 3 caracteres")
+    }
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         measure {
